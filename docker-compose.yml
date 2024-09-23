@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  go-app:
+    image: vad0s/bigletti:latest
+    build:
+        context: .
+    environment:
+      TELEGRAM_TOKEN: "BOT_TOKEN"
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    restart: always
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+volumes:
+    redis-data:
